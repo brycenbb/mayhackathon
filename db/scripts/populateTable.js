@@ -14,12 +14,25 @@ import fetch from 'node-fetch'
 async function getSubReddit(){
     let response = await fetch("https://www.reddit.com/r/gaming.json")
     let data = await response.json();
-    console.log(data.data)
-    for(let i = 0; i < data.length; i++){
-        const res = await pool.query(
-            `INSERT INTO reddit `
-        )
+    let array = data.data.children
+    let childinfo = []
+    for(let i = 0; i < array.length; i++){
+        let subreddit = array[i].data.subreddit
+        let title = array[i].data.title
+        let award_count = array[i].data.total_awards_received
+        let thumbnail = array[i].data.thumbnail
+        let link = "reddit.com" + array[i].data.permalink 
+        let upvotes = array[i].data.ups
+        childinfo.push(subreddit, title, upvotes, award_count, thumbnail, link)
+        console.log(childinfo)
+
+        // const res = await pool.query(
+        //     `INSERT INTO reddit (subreddit, title, upvotes, award_count, thumbnail, link) Values ($1, $2, $3. $4, $5, $6); `, childinfo
+        // )
+        childinfo = []
+
 
     }
 }
+
 await getSubReddit()
