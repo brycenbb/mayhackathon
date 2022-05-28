@@ -1,6 +1,8 @@
-import { pg } from 'pg';
+import pg from 'pg';
+// import pkg from 'pg';
+// const { pg } = pkg;
 
-export const pool = new pg.Pool({
+export default new pg.Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   database: process.env.PGDATABASE,

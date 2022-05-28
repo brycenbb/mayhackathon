@@ -1,5 +1,5 @@
 //flag on the json called over_18, only add if that flag is false.
-// import pool from '../index.js';
+import pool from '../index.js';
 import fetch from 'node-fetch';
 
 //fetch json
@@ -22,7 +22,7 @@ async function getSubReddit() {
     console.log(childinfo);
 
     const res = await pool.query(
-      `INSERT INTO reddit (subreddit, title, upvotes, award_count, thumbnail, link) Values ($1, $2, $3. $4, $5, $6); `,
+      `INSERT INTO reddit (subreddit, title, upvotes, award_count, thumbnail, link) Values ($1, $2, $3, $4, $5, $6); `,
       childinfo
     );
     childinfo = [];
