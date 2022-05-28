@@ -1,4 +1,4 @@
-import { pool } from '../db/index.js';
+import pool from '../db/index.js';
 
 export async function initialLoad() {
   let response = await pool.query(
@@ -23,3 +23,5 @@ export async function lucky() {
   );
   return response2.rows;
 }
+
+//add into database for when data that doesnt exist is queried
